@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tileset/concrete_bottom_slab_atlas.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Tileset/earth_atlas.png" type="Texture" id=13]
 [ext_resource path="res://Tileset/crate_top_half.png" type="Texture" id=14]
 [ext_resource path="res://Ammo.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Glutton.tscn" type="PackedScene" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -574,6 +575,11 @@ collision_layer = 4
 [node name="Ammo3" parent="Pickups" instance=ExtResource( 15 )]
 position = Vector2( 4832, 256 )
 collision_layer = 4
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Glutton" parent="Enemies" instance=ExtResource( 16 )]
+position = Vector2( 176, 224 )
 [connection signal="collected" from="Pickups/Ammo" to="Player" method="_on_Ammo_collected"]
 [connection signal="collected" from="Pickups/Ammo2" to="Player" method="_on_Ammo_collected"]
 [connection signal="collected" from="Pickups/Ammo3" to="Player" method="_on_Ammo_collected"]
