@@ -52,3 +52,4 @@ func _physics_process(_delta):
 #Ammo Pickup
 func _on_Ammo_collected():
 	ammo = ammo + 1
+	print(ammo)

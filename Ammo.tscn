@@ -8,6 +8,9 @@ radius = 28.505
 
 [node name="Ammo" type="Area2D"]
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 4, 4 )
