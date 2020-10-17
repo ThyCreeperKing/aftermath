@@ -13,12 +13,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.41422, 0 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
 playing = true
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 0.707108, 0 )
 shape = SubResource( 1 )

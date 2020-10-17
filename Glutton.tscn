@@ -10,7 +10,7 @@ extents = Vector2( 12.2193, 14.6557 )
 extents = Vector2( 19.3443, 30.7933 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 726.632
+radius = 515.101
 
 [node name="Glutton" type="KinematicBody2D"]
 collision_layer = 8
@@ -20,7 +20,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="GluttonSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
 animation = "walk"

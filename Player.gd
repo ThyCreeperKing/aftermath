@@ -16,16 +16,16 @@ func _physics_process(_delta):
 	#Input Control
 	if Input.is_action_pressed("move_left"):
 		velocity.x = -MOVE_SPEED
-		$AnimatedSprite.play("Walk")
-		$AnimatedSprite.flip_h = true
+		$PlayerSprite.play("Walk")
+		$PlayerSprite.flip_h = true
 	
 	elif Input.is_action_pressed("move_right"):
 		velocity.x = MOVE_SPEED
-		$AnimatedSprite.play("Walk")
-		$AnimatedSprite.flip_h = false
+		$PlayerSprite.play("Walk")
+		$PlayerSprite.flip_h = false
 	
 	elif velocity.x == 0 and velocity.y == 0:
-		$AnimatedSprite.play("Idle")
+		$PlayerSprite.play("Idle")
 	
 	else: 
 		velocity.x = 0
@@ -35,16 +35,16 @@ func _physics_process(_delta):
 		velocity.y = JUMP_SPEED
 
 	elif velocity.y  < 0:
-		$AnimatedSprite.play("Jump")
+		$PlayerSprite.play("Jump")
 	
 	elif velocity.y > 100:
-		$AnimatedSprite.play("Fall")
+		$PlayerSprite.play("Fall")
 	
 	#Crouch Contrtol
 	if Input.is_action_pressed("crouch") and is_on_floor():
 		velocity.x = 0
 		velocity.y = 0
-		$AnimatedSprite.play("Crouch")
+		$PlayerSprite.play("Crouch")
 	
 	#Gravity and Movement
 	velocity.y += GRAVITY
@@ -53,6 +53,7 @@ func _physics_process(_delta):
 	#Death
 	if health <= 0:
 		get_tree().change_scene("res://World.tscn")
+
 
 
 ###PICKUPS###

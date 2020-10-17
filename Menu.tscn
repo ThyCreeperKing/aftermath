@@ -8,32 +8,43 @@
 [node name="Game Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -1023.0
+margin_bottom = -600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BG" type="TextureRect" parent="."]
-margin_left = -432.0
+margin_left = -652.401
 margin_top = -64.0
-margin_right = 528.0
-margin_bottom = 656.0
+margin_right = 944.599
+margin_bottom = 1134.0
 texture = ExtResource( 1 )
+expand = true
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect2" type="TextureRect" parent="BG"]
-margin_left = 960.0
-margin_right = 1920.0
-margin_bottom = 720.0
+[node name="BG2" type="TextureRect" parent="."]
+margin_left = 944.599
+margin_top = -64.0
+margin_right = 2541.6
+margin_bottom = 1134.0
 texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="TextureRect" parent="."]
-margin_left = 96.0
-margin_top = 96.0
-margin_right = 928.0
-margin_bottom = 304.0
+anchor_right = 2.145
+anchor_bottom = 1.0
+margin_left = 310.0
+margin_top = 170.0
+margin_right = -314.065
+margin_bottom = 14.0
+rect_min_size = Vector2( 1300, 324 )
+rect_pivot_offset = Vector2( 650, 162 )
 texture = ExtResource( 2 )
 expand = true
 __meta__ = {
@@ -41,10 +52,15 @@ __meta__ = {
 }
 
 [node name="Play Button" type="TextureButton" parent="."]
-margin_left = 368.0
-margin_top = 384.0
-margin_right = 656.0
-margin_bottom = 512.0
+anchor_left = 1.038
+anchor_top = 0.784
+anchor_right = 1.038
+anchor_bottom = 0.784
+margin_left = -621.086
+margin_top = 212.633
+margin_right = -199.086
+margin_bottom = 400.633
+rect_min_size = Vector2( 422, 188 )
 texture_normal = ExtResource( 4 )
 expand = true
 script = ExtResource( 3 )
