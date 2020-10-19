@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ammo_levels.tres" type="SpriteFrames" id=1]
+
+[node name="Ammo" type="AnimatedSprite"]
+scale = Vector2( 4, 4 )
+frames = ExtResource( 1 )
+animation = "mag_levels"

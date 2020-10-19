@@ -9,6 +9,15 @@ var velocity = Vector2(0,0)
 var ammo = 0
 var health = 20
 
+###SIGNAL SETUP###
+#signal ammo(ammo)
+#signal health(health)
+
+
+###READY FUNC###
+func _ready():
+	pass
+
 
 ###PLAYER LOOP###
 func _physics_process(_delta):
@@ -52,15 +61,31 @@ func _physics_process(_delta):
 	
 	#Death
 	if health <= 0:
-		get_tree().change_scene("res://World.tscn")
+		get_tree().change_scene("res://Menu.tscn")
+	
+	#Health Overload Prevention
+	if health > 20:
+		health = 20
+		
+	#Ammo Overload Prevention
+	if ammo > 6:
+		ammo = 6
+	
+	#Ammo & Health Signals
+	#emit_signal("ammo", [ammo])
+	#emit_signal("health", [health])
 
+
+func _on_Glutton_damage():
+	health = health - randi()%4+3
 
 
 ###PICKUPS###
 #Ammo Pickup
 func _on_Ammo_collected():
-	ammo = ammo + 1
-	
+	ammo = ammo + randi()%2+1
+
+
 #MRE Pickup
 func _on_MRE_collected():
-	health = health + 3
+	health = health + randi()%3+2

@@ -17,9 +17,23 @@
 [ext_resource path="res://Tileset/concrete_top_slab_atlas.png" type="Texture" id=15]
 [ext_resource path="res://Tileset/earth_atlas.png" type="Texture" id=16]
 [ext_resource path="res://background.png" type="Texture" id=17]
-[ext_resource path="res://Magazine_Overlay.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Ammo_Overlay.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Health_Overlay.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Magazine.gd" type="Script" id=20]
+
+[sub_resource type="GDScript" id=30]
+script/source = "extends AnimatedSprite
+
+onready var player = get_node(\"/root/City Enviro/Player\")
+
+func _ready():
+	set_frame(0)
+
+func _process(delta):
+	set_as_toplevel(true)
+	position.x = player.position.x + 400
+	position.y = player.position.y + 215
+	
+"
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -488,7 +502,7 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 [node name="ParallaxBG" type="ParallaxBackground" parent="Background"]
 
 [node name="Parallax City" type="ParallaxLayer" parent="Background/ParallaxBG"]
-motion_scale = Vector2( 0.5, 1 )
+motion_scale = Vector2( 0.35, 1 )
 motion_mirroring = Vector2( 1920, 0 )
 __meta__ = {
 "_edit_group_": true
@@ -543,7 +557,7 @@ current = true
 frame = 1
 
 [node name="Magazine" parent="Player" instance=ExtResource( 18 )]
-script = ExtResource( 20 )
+script = SubResource( 30 )
 
 [node name="Tile Map" type="TileMap" parent="."]
 position = Vector2( -3.05176e-05, 0 )
