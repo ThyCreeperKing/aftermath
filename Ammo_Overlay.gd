@@ -1,10 +1,9 @@
-extends AnimatedSprite
+extends CanvasLayer
 
 onready var player = get_node("/root/City Enviro/Player")
 
-func _process(delta):
-	#Position
-	set_as_toplevel(true)
-	position.x = player.position.x + 400
-	position.y = player.position.y + 215
-
+func _process(_delta):
+	#Layer
+	$Ammo_Bar.set_as_toplevel(true)
+	#Frame
+	$Ammo_Bar.set_frame(Global.global_ammo)

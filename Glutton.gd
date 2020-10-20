@@ -17,12 +17,12 @@ func _on_DamageArea_body_entered(_body):
 #Player Detection
 func _on_Visibility_body_entered(body):
 	player = body
-func _on_Visibility_body_exited(body):
+func _on_Visibility_body_exited(_body):
 	player = null
 
 
 ###ENEMY LOOP###
-func _physics_process(delta):
+func _physics_process(_delta):
 	#Player Chase
 	velocity.x = 0
 	if player:

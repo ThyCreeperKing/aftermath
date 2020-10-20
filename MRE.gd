@@ -8,5 +8,5 @@ func _on_MRE_body_entered(_body):
 	queue_free()
 
 #Animation
-func _process(delta):
+func _process(_delta):
 	$Sprite.play()
