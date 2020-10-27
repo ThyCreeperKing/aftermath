@@ -36,7 +36,7 @@ func _physics_process(_delta):
 	elif velocity.y  < 0:
 		$PlayerSprite.play("Jump")
 	
-	elif velocity.y > 175:
+	elif velocity.y > 200:
 		$PlayerSprite.play("Fall")
 	
 	#Crouch Contrtol
@@ -53,9 +53,11 @@ func _physics_process(_delta):
 		Global.global_ammo -= 1
 		
 		if $PlayerSprite.flip_h == true:
-			bullet_shoot.direction = 1
-		elif $PlayerSprtie.flip_h == false:
 			bullet_shoot.direction = -1
+			$PlayerSprite.play("Shoot")
+		elif $PlayerSprtie.flip_h == false:
+			bullet_shoot.direction = 1
+			$PlayerSprite.play("Shoot")
 	
 	#Gravity and Movement
 	velocity.y += GRAVITY

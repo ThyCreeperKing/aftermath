@@ -12,6 +12,8 @@ var player = null
 signal attack
 func _on_DamageArea_body_entered(_body):
 	emit_signal("attack")
+	$GluttonSprite.stop("Idle")
+	$GluttonSprite.play("Attack")
 
 
 #Player Detection
@@ -38,9 +40,14 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity,Vector2.UP)
 	velocity.y += GRAVITY
 	
+	#Idle
+	if velocity == Vector2(0,0):
+		$GluttonSprite.play("Idle")
+	
 	#Jump Mechanics
 	if is_on_wall():
 		velocity.y = JUMP_SPEED
+		$GluttonSprite.stop("Idle")
 		$GluttonSprite.play("Jump")
 
 func _ready():

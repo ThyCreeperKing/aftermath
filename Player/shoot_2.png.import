@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/glutton0.png-fda866f589dc8fbc7759269014af98c3.stex"
+path="res://.import/shoot_2.png-eacab371305f0aba4d2f9e9a2c82d256.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/glutton0.png"
-dest_files=[ "res://.import/glutton0.png-fda866f589dc8fbc7759269014af98c3.stex" ]
+source_file="res://Player/shoot_2.png"
+dest_files=[ "res://.import/shoot_2.png-eacab371305f0aba4d2f9e9a2c82d256.stex" ]
 
 [params]
 

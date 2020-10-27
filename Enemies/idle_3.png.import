@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/glutton2.png-963ad10cdfb172540df3d08d34dd0ccb.stex"
+path="res://.import/idle_3.png-f2cd4bff3d8a85af000c7053c153261c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/glutton2.png"
-dest_files=[ "res://.import/glutton2.png-963ad10cdfb172540df3d08d34dd0ccb.stex" ]
+source_file="res://Enemies/idle_3.png"
+dest_files=[ "res://.import/idle_3.png-f2cd4bff3d8a85af000c7053c153261c.stex" ]
 
 [params]
 
