@@ -24,7 +24,7 @@ func _physics_process(_delta):
 		$PlayerSprite.flip_h = false
 	
 	elif velocity.x == 0 and velocity.y == 0:
-		$PlayerSprite.play("Idle")
+		pass
 	
 	else: 
 		velocity.x = 0
@@ -36,7 +36,7 @@ func _physics_process(_delta):
 	elif velocity.y  < 0:
 		$PlayerSprite.play("Jump")
 	
-	elif velocity.y > 200:
+	elif velocity.y > 235:
 		$PlayerSprite.play("Fall")
 	
 	#Crouch Contrtol
@@ -45,19 +45,26 @@ func _physics_process(_delta):
 		velocity.y = 0
 		$PlayerSprite.play("Crouch")
 	
+	#Idle Animation
+	if velocity == Vector2(0,0) and not $PlayerSprite.animation == "Shoot" and not $PlayerSprite.animation == "Crouch":
+		$PlayerSprite.animation = "Idle"
+	
 	#Shooting
-	if Input.is_action_just_pressed("shoot") and Global.global_ammo > 0:
+	if Input.is_action_just_pressed("shoot") and Global.global_ammo > 0 and is_on_floor():
+		$PlayerSprite.play("Shoot")
 		var bullet_shoot = bullet.instance()
 		get_parent().add_child(bullet_shoot)
-		bullet_shoot.position = position
+		
 		Global.global_ammo -= 1
 		
 		if $PlayerSprite.flip_h == true:
+			bullet_shoot.position.x = position.x - 35
+			bullet_shoot.position.y = position.y - 15
 			bullet_shoot.direction = -1
-			$PlayerSprite.play("Shoot")
-		elif $PlayerSprtie.flip_h == false:
+		elif $PlayerSprite.flip_h == false:
+			bullet_shoot.position.x = position.x + 35
+			bullet_shoot.position.y = position.y - 15
 			bullet_shoot.direction = 1
-			$PlayerSprite.play("Shoot")
 	
 	#Gravity and Movement
 	velocity.y += GRAVITY
@@ -80,6 +87,13 @@ func _physics_process(_delta):
 		Global.global_ammo = 0
 
 
+#Shooting Animation Stop
+func _on_PlayerSprite_animation_finished():
+	if $PlayerSprite.animation == "Shoot":
+		$PlayerSprite.animation = "Idle"
+
+
+#Enemy Damage
 func _on_Glutton_damage():
 	Global.global_health = Global.global_health - randi()%4+3
 
