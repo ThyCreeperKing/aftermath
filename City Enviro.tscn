@@ -529,7 +529,7 @@ offset = Vector2( 921.194, -239.676 )
 position = Vector2( -1472, 384 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 4320, 80 )
+position = Vector2( 512, 368 )
 scale = Vector2( 0.96, 1.04 )
 collision_layer = 2147483649
 collision_mask = 14

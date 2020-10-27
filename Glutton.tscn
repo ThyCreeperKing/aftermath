@@ -23,7 +23,8 @@ __meta__ = {
 [node name="GluttonSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
-animation = "Attack"
+animation = "Idle"
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.84187, 37.1913 )
