@@ -548,8 +548,20 @@ position = Vector2( -2272, 640 )
 [node name="Ammo3" parent="Pickups" instance=ExtResource( 4 )]
 position = Vector2( 4832, 256 )
 
+[node name="Ammo4" parent="Pickups" instance=ExtResource( 4 )]
+position = Vector2( 1120, 224 )
+
+[node name="Ammo5" parent="Pickups" instance=ExtResource( 4 )]
+position = Vector2( 10720, 416 )
+
+[node name="Ammo6" parent="Pickups" instance=ExtResource( 4 )]
+position = Vector2( 19552, 192 )
+
 [node name="MRE" parent="Pickups" instance=ExtResource( 2 )]
-position = Vector2( -1120, 480 )
+position = Vector2( -2208, 352 )
+
+[node name="MRE2" parent="Pickups" instance=ExtResource( 2 )]
+position = Vector2( 14752, 352 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -563,3 +575,6 @@ transform = Transform2D( 1, 0, 0, 1, 855, 480 )
 [connection signal="collected" from="Pickups/Ammo" to="Player" method="_on_Ammo_collected"]
 [connection signal="collected" from="Pickups/Ammo2" to="Player" method="_on_Ammo_collected"]
 [connection signal="collected" from="Pickups/Ammo3" to="Player" method="_on_Ammo_collected"]
+[connection signal="collected" from="Pickups/Ammo4" to="Player" method="_on_Ammo_collected"]
+[connection signal="collected" from="Pickups/Ammo5" to="Player" method="_on_Ammo_collected"]
+[connection signal="collected" from="Pickups/Ammo6" to="Player" method="_on_Ammo_collected"]
