@@ -47,12 +47,12 @@ func _physics_process(_delta):
 		$PlayerSprite.animation = "Idle"
 	
 	#Shooting
-	if Input.is_action_just_pressed("shoot") and Global.global_ammo > 0 and is_on_floor():
+	if Input.is_action_just_pressed("shoot") and Global.player_ammo > 0 and is_on_floor():
 		$PlayerSprite.play("Shoot")
 		var bullet_shoot = bullet.instance()
 		get_parent().add_child(bullet_shoot)
 		
-		Global.global_ammo -= 1
+		Global.player_ammo -= 1
 		
 		if $PlayerSprite.flip_h == true:
 			bullet_shoot.position.x = position.x - 35
@@ -72,20 +72,20 @@ func _physics_process(_delta):
 	
 	
 	#Death
-	if Global.global_health <= 0:
+	if Global.player_health <= 0:
 		get_tree().change_scene("res://Menu.tscn")
 	
 	#Health Range
-	if Global.global_health > 20:
-		Global.global_health = 20
-	elif Global.global_health < 0:
-		Global.global_health = 0
+	if Global.player_health > 20:
+		Global.player_health = 20
+	elif Global.player_health < 0:
+		Global.player_health = 0
 		
 	#Ammo Range
-	if Global.global_ammo > 6:
-		Global.global_ammo = 6
-	elif Global.global_ammo < 0:
-		Global.global_ammo = 0
+	if Global.player_ammo > 6:
+		Global.player_ammo = 6
+	elif Global.player_ammo < 0:
+		Global.player_ammo = 0
 
 
 #Shooting Animation Stop
@@ -96,15 +96,16 @@ func _on_PlayerSprite_animation_finished():
 
 #Enemy Damage
 func _on_Glutton_damage():
-	Global.global_health -= randi()%4+3
+	Global.player_health -= randi()%4+3
 
 
 ###PICKUPS###
 #Ammo Pickup
 func _on_Ammo_collected():
-	Global.global_ammo += randi()%2+1
+	Global.player_ammo += randi()%2+1
 
 
 #MRE Pickup
 func _on_MRE_collected():
-	Global.global_health += randi()%3+2
+	Global.player_health += randi()%3+2
+

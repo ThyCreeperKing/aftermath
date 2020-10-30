@@ -6,4 +6,4 @@ func _process(_delta):
 	#Layer
 	$Ammo_Bar.set_as_toplevel(true)
 	#Frame
-	$Ammo_Bar.set_frame(Global.global_ammo)
+	$Ammo_Bar.set_frame(Global.player_ammo)

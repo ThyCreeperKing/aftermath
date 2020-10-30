@@ -47,7 +47,20 @@ func _physics_process(_delta):
 	if is_on_wall():
 		velocity.y = JUMP_SPEED
 		$GluttonSprite.play("Jump")
+	
+	#Health Range
+	if Global.glutton_health > 20:
+		Global.glutton_health = 20
+	elif Global.glutton_health < 0:
+		Global.glutton_health = 0
+	
+	#Glutton Death
+	if Global.glutton_health == 0:
+		queue_free()
 
+#Glutton Damage
+func _on_Bullet_gluttonshot():
+	Global.glutton_health -= randi()%4+3
 
 func _ready():
 	$GluttonSprite.set_frame(0)
@@ -55,3 +68,5 @@ func _ready():
 func _on_GluttonSprite_animation_finished():
 	if $GluttonSprite.animation == "Jump":
 		$GluttonSprite.stop()
+
+
