@@ -599,6 +599,7 @@ transform = Transform2D( 1, 0, 0, 1, 0, 480 )
 [node name="Ammo_Overlay" parent="Overlays" instance=ExtResource( 18 )]
 offset = Vector2( 855, 480 )
 transform = Transform2D( 1, 0, 0, 1, 855, 480 )
+[connection signal="attack" from="Enemies/Glutton" to="Player" method="_on_Glutton_attack"]
 [connection signal="body_entered" from="Bullet" to="Enemies/Glutton" method="_on_Bullet_body_entered"]
 [connection signal="gluttonshot" from="Bullet" to="Enemies/Glutton" method="_on_Bullet_gluttonshot"]
 [connection signal="collected" from="Pickups/Ammo" to="Player" method="_on_Ammo_collected"]

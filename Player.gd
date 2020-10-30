@@ -94,8 +94,8 @@ func _on_PlayerSprite_animation_finished():
 		$PlayerSprite.animation = "Idle"
 
 
-#Enemy Damage
-func _on_Glutton_damage():
+#Gluton Damage
+func _on_Glutton_attack():
 	Global.player_health -= randi()%4+3
 
 
@@ -108,4 +108,3 @@ func _on_Ammo_collected():
 #MRE Pickup
 func _on_MRE_collected():
 	Global.player_health += randi()%3+2
-

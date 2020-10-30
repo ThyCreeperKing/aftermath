@@ -27,11 +27,11 @@ func _physics_process(_delta):
 	#Player Chase
 	velocity.x = 0
 	if player:
-		if player.position.x > position.x:
+		if player.position.x > position.x + 50:
 			velocity.x = MOVE_SPEED
 			$GluttonSprite.flip_h = false
 		
-		elif player.position.x < position.x:
+		elif player.position.x < position.x - 50:
 			velocity.x = -MOVE_SPEED
 			$GluttonSprite.flip_h = true
 	
