@@ -23,9 +23,6 @@ func _physics_process(_delta):
 		$PlayerSprite.play("Walk")
 		$PlayerSprite.flip_h = false
 	
-	elif velocity.x == 0 and velocity.y == 0:
-		pass
-	
 	else: 
 		velocity.x = 0
 	
@@ -70,6 +67,10 @@ func _physics_process(_delta):
 	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity,Vector2.UP)
 	
+	#Fall Damage
+	
+	
+	
 	#Death
 	if Global.global_health <= 0:
 		get_tree().change_scene("res://Menu.tscn")
@@ -95,15 +96,15 @@ func _on_PlayerSprite_animation_finished():
 
 #Enemy Damage
 func _on_Glutton_damage():
-	Global.global_health = Global.global_health - randi()%4+3
+	Global.global_health -= randi()%4+3
 
 
 ###PICKUPS###
 #Ammo Pickup
 func _on_Ammo_collected():
-	Global.global_ammo = Global.global_ammo + randi()%2+1
+	Global.global_ammo += randi()%2+1
 
 
 #MRE Pickup
 func _on_MRE_collected():
-	Global.global_health = Global.global_health + randi()%3+2
+	Global.global_health += randi()%3+2
