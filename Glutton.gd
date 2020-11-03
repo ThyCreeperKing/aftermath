@@ -12,8 +12,6 @@ var player = null
 signal attack
 func _on_DamageArea_body_entered(_body):
 	emit_signal("attack")
-	$GluttonSprite.play("Attack")
-
 
 #Player Detection
 func _on_Visibility_body_entered(body):
@@ -30,10 +28,18 @@ func _physics_process(_delta):
 		if player.position.x > position.x + 50:
 			velocity.x = MOVE_SPEED
 			$GluttonSprite.flip_h = false
-		
+			
+			if player.position.x <= position.x + 50:
+				emit_signal("attack")
+				$GluttonSprite.play("Attack")
+			
 		elif player.position.x < position.x - 50:
 			velocity.x = -MOVE_SPEED
 			$GluttonSprite.flip_h = true
+			
+			if player.position.x >= position.x - 50:
+				emit_signal("attack")
+				$GluttonSprite.play("Attack")
 	
 	#Gravity and Movement
 	velocity = move_and_slide(velocity,Vector2.UP)

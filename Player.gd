@@ -98,13 +98,3 @@ func _on_PlayerSprite_animation_finished():
 func _on_Glutton_attack():
 	Global.player_health -= randi()%4+3
 
-
-###PICKUPS###
-#Ammo Pickup
-func _on_Ammo_collected():
-	Global.player_ammo += randi()%2+1
-
-
-#MRE Pickup
-func _on_MRE_collected():
-	Global.player_health += randi()%3+2

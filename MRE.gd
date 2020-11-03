@@ -4,7 +4,7 @@ extends Area2D
 #Pickup Signal
 signal collected
 func _on_MRE_body_entered(_body):
-	emit_signal("collected")
+	Global.player_health += randi()%3+2
 	queue_free()
 
 #Animation
