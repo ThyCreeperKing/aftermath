@@ -8,21 +8,14 @@ var velocity = Vector2(0,0)
 var player = null
 
 
-#Damage Signal
+###SIGNALS###
 signal attack
-func _on_DamageArea_body_entered(_body):
-	emit_signal("attack")
-
-#Player Detection
-func _on_Visibility_body_entered(body):
-	player = body
-func _on_Visibility_body_exited(_body):
-	player = null
+signal gluttonshot
 
 
-###ENEMY LOOP###
+###GLUTTON LOOP###
 func _physics_process(_delta):
-	#Player Chase
+	#Player Chase & Attack Mechanics
 	velocity.x = 0
 	if player:
 		if player.position.x > position.x + 50:
@@ -30,7 +23,6 @@ func _physics_process(_delta):
 			$GluttonSprite.flip_h = false
 			
 			if player.position.x <= position.x + 50:
-				emit_signal("attack")
 				$GluttonSprite.play("Attack")
 			
 		elif player.position.x < position.x - 50:
@@ -38,7 +30,6 @@ func _physics_process(_delta):
 			$GluttonSprite.flip_h = true
 			
 			if player.position.x >= position.x - 50:
-				emit_signal("attack")
 				$GluttonSprite.play("Attack")
 	
 	#Gravity and Movement
@@ -54,25 +45,32 @@ func _physics_process(_delta):
 		velocity.y = JUMP_SPEED
 		$GluttonSprite.play("Jump")
 	
-	#Health Range
+	#Max Health
 	if Global.glutton_health > 20:
 		Global.glutton_health = 20
-	elif Global.glutton_health < 0:
-		Global.glutton_health = 0
-	
-	#Glutton Death
-	if Global.glutton_health == 0:
+	#Death
+	elif Global.glutton_health <= 0:
 		queue_free()
 
-#Glutton Damage
-func _on_Bullet_gluttonshot():
-	Global.glutton_health -= randi()%4+3
 
-func _ready():
-	$GluttonSprite.set_frame(0)
+#Player Detection
+func _on_Visibility_body_entered(body):
+	player = body
+func _on_Visibility_body_exited(_body):
+	player = null
 
+
+#Checking for Finished Animations
 func _on_GluttonSprite_animation_finished():
+	#Jump Once
 	if $GluttonSprite.animation == "Jump":
 		$GluttonSprite.stop()
+	#Attack Signal
+	if $GluttonSprite.animation == "Attack":
+		emit_signal("attack")
 
 
+#Hit by Bullet
+func _on_DamageArea_area_entered(_area):
+	Global.glutton_health -= randi()%4+3
+	emit_signal("gluttonshot")

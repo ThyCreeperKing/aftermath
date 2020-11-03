@@ -70,7 +70,6 @@ func _physics_process(_delta):
 	#Fall Damage
 	
 	
-	
 	#Death
 	if Global.player_health <= 0:
 		get_tree().change_scene("res://Menu.tscn")
@@ -88,13 +87,17 @@ func _physics_process(_delta):
 		Global.player_ammo = 0
 
 
+#Bullet Disappears When Shooting Enemies
+func _on_Glutton_gluttonshot():
+	pass
+
+
 #Shooting Animation Stop
 func _on_PlayerSprite_animation_finished():
 	if $PlayerSprite.animation == "Shoot":
 		$PlayerSprite.animation = "Idle"
 
 
-#Gluton Damage
+#Glutton Attack
 func _on_Glutton_attack():
 	Global.player_health -= randi()%4+3
-
