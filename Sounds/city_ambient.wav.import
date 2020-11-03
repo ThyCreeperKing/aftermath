@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/city_ambient.wav-8b821da2b49f002e43cee7dde260bfe3.sample"
+
+[deps]
+
+source_file="res://Sounds/city_ambient.wav"
+dest_files=[ "res://.import/city_ambient.wav-8b821da2b49f002e43cee7dde260bfe3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
