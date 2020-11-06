@@ -87,11 +87,6 @@ func _physics_process(_delta):
 		Global.player_ammo = 0
 
 
-#Bullet Disappears When Shooting Enemies
-func _on_Glutton_gluttonshot():
-	pass
-
-
 #Shooting Animation Stop
 func _on_PlayerSprite_animation_finished():
 	if $PlayerSprite.animation == "Shoot":

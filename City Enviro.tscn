@@ -552,7 +552,7 @@ current = true
 
 [node name="Bullet" parent="." instance=ExtResource( 21 )]
 visible = false
-collision_mask = 24
+collision_mask = 8
 
 [node name="Tile Map" type="TileMap" parent="."]
 position = Vector2( -3.05176e-05, 0 )
@@ -605,6 +605,4 @@ transform = Transform2D( 1, 0, 0, 1, 0, 480 )
 offset = Vector2( 855, 480 )
 transform = Transform2D( 1, 0, 0, 1, 855, 480 )
 [connection signal="attack" from="Enemies/Glutton" to="Player" method="_on_Glutton_attack"]
-[connection signal="gluttonshot" from="Enemies/Glutton" to="Bullet" method="_on_Glutton_gluttonshot"]
 [connection signal="area_entered" from="Bullet" to="Enemies/Glutton" method="_on_Bullet_area_entered"]
-[connection signal="body_entered" from="Pickups/Ammo2" to="Player" method="_on_Ammo2_body_entered"]

@@ -10,8 +10,6 @@ var player = null
 
 ###SIGNALS###
 signal attack
-signal gluttonshot
-
 
 ###GLUTTON LOOP###
 func _physics_process(_delta):
@@ -71,6 +69,6 @@ func _on_GluttonSprite_animation_finished():
 
 
 #Hit by Bullet
-func _on_DamageArea_area_entered(_area):
+func _on_Bullet_area_entered(area):
 	Global.glutton_health -= randi()%4+3
-	emit_signal("gluttonshot")
+	area.queue_free()
