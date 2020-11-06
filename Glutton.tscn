@@ -24,7 +24,6 @@ __meta__ = {
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.84187, 37.1913 )
@@ -44,5 +43,6 @@ collision_layer = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
 shape = SubResource( 3 )
 [connection signal="animation_finished" from="GluttonSprite" to="." method="_on_GluttonSprite_animation_finished"]
+[connection signal="area_entered" from="DamageArea" to="." method="_on_DamageArea_area_entered"]
 [connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
 [connection signal="body_exited" from="Visibility" to="." method="_on_Visibility_body_exited"]
