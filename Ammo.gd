@@ -5,7 +5,7 @@ extends Area2D
 func _on_Ammo_body_entered(_body):
 	if Global.player_ammo < 6:
 		Global.player_ammo += randi()%2+1
-		$SoundReload.play(0.0)
+		$SoundReload.play()
 		queue_free()
 	
 #Bounce Animation

@@ -18,7 +18,7 @@ func _physics_process(_delta):
 	if player:
 		if player.position.x > position.x + 50:
 			velocity.x = MOVE_SPEED
-			#$GluttonSprite.play("Walk")
+			$GluttonSprite.play("Walk")
 			$GluttonSprite.flip_h = false
 			
 			if player.position.x <= position.x + 51:
@@ -27,7 +27,7 @@ func _physics_process(_delta):
 			
 		elif player.position.x < position.x - 50:
 			velocity.x = -MOVE_SPEED
-			#$GluttonSprite.play("Walk")
+			$GluttonSprite.play("Walk")
 			$GluttonSprite.flip_h = true
 			
 			if player.position.x >= position.x - 51:
@@ -81,7 +81,7 @@ func _on_DamageArea_area_entered(area):
 	Global.glutton_health -= randi()%4+3
 	area.queue_free()
 	
-	$GluttonSprite.modulate = Color(0,99,99,28)
+	$GluttonSprite.modulate = Color(1,0,0,1)
 	yield(get_tree().create_timer(0.1), "timeout")
 	$GluttonSprite.modulate = Color(1,1,1,1)
 	
