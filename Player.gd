@@ -49,6 +49,7 @@ func _physics_process(_delta):
 	#Shooting
 	if Input.is_action_just_pressed("shoot") and Global.player_ammo > 0 and is_on_floor():
 		$PlayerSprite.play("Shoot")
+		$SoundShoot.play(0.1)
 		var bullet_shoot = bullet.instance()
 		get_parent().add_child(bullet_shoot)
 		
