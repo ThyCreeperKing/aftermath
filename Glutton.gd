@@ -28,7 +28,7 @@ func _physics_process(_delta):
 			velocity.x = -MOVE_SPEED
 			$GluttonSprite.flip_h = true
 			
-			if player.position.x >= position.x - 49:
+			if player.position.x >= position.x - 51:
 				$GluttonSprite.play("Attack")
 				print("attack left")
 	
