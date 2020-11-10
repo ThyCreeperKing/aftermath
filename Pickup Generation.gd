@@ -6,8 +6,8 @@ var ammo_pickup = preload("res://Ammo.tscn")
 var mre_pickup = preload("res://MRE.tscn")
 var rng = RandomNumberGenerator.new()  ##setup Random Number Generator
 var used = get_used_cells() ##create a list of all tiles on the tilemap that have content
-var ammo_pickups = 4
-var mre_pickups = 3
+var ammo_pickups = 7
+var mre_pickups = 5
 	
 func _ready():
 	while ammo_pickups > 0:
