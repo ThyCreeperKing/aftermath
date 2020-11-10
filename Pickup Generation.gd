@@ -20,8 +20,6 @@ func _ready():
 		var new_ammo_pickup = ammo_pickup.instance()
 		get_parent().call_deferred("add_child", (new_ammo_pickup))
 		var scene = get_tree().get_current_scene().get_name()
-		print(scene)
-		print(spawnlocation)
 		
 		#position the new object over the tileset object (32 added so it does not spawn offset)
 		new_ammo_pickup.position.x = spawnlocation.x * 64 + 32
@@ -37,8 +35,6 @@ func _ready():
 		var new_mre_pickup = mre_pickup.instance()
 		get_parent().call_deferred("add_child", (new_mre_pickup))
 		var scene = get_tree().get_current_scene().get_name()
-		print(scene)
-		print(m_spawnlocation)
 		
 		#position the new object over the tileset object (32 added so it does not spawn offset)
 		new_mre_pickup.position.x = m_spawnlocation.x * 64 + 32

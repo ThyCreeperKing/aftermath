@@ -18,6 +18,7 @@ func _physics_process(_delta):
 	if player:
 		if player.position.x > position.x + 50:
 			velocity.x = MOVE_SPEED
+			#$GluttonSprite.play("Walk")
 			$GluttonSprite.flip_h = false
 			
 			if player.position.x <= position.x + 51:
@@ -26,15 +27,12 @@ func _physics_process(_delta):
 			
 		elif player.position.x < position.x - 50:
 			velocity.x = -MOVE_SPEED
+			#$GluttonSprite.play("Walk")
 			$GluttonSprite.flip_h = true
 			
 			if player.position.x >= position.x - 51:
 				$GluttonSprite.play("Attack")
 				print("attack left")
-	
-	#Gravity and Movement
-	velocity = move_and_slide(velocity,Vector2.UP)
-	velocity.y += GRAVITY
 	
 	#Idle
 	if velocity == Vector2(0,19.6) and player == null:
@@ -50,7 +48,12 @@ func _physics_process(_delta):
 		Global.glutton_health = 20
 	#Death
 	elif Global.glutton_health <= 0:
+		velocity = Vector2(0,0)
 		$GluttonSprite.play("Death")
+		
+	#Gravity and Movement
+	velocity = move_and_slide(velocity,Vector2.UP)
+	velocity.y += GRAVITY
 
 
 #Player Detection
@@ -77,4 +80,9 @@ func _on_GluttonSprite_animation_finished():
 func _on_DamageArea_area_entered(area):
 	Global.glutton_health -= randi()%4+3
 	area.queue_free()
+	
+	$GluttonSprite.modulate = Color(0,99,99,28)
+	yield(get_tree().create_timer(0.1), "timeout")
+	$GluttonSprite.modulate = Color(1,1,1,1)
+	
 

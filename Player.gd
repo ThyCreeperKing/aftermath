@@ -96,4 +96,8 @@ func _on_PlayerSprite_animation_finished():
 
 #Glutton Attack
 func _on_Glutton_attack():
+	$PlayerSprite.modulate = Color(0,99,99,28)
+	yield(get_tree().create_timer(0.1), "timeout")
+	$PlayerSprite.modulate = Color(1,1,1,1)
+	
 	Global.player_health -= randi()%4+3
