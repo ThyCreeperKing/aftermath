@@ -1,13 +1,11 @@
 extends Area2D
 
+signal healed
 
 #MRE Pickup
-func _on_MRE_body_entered(body):
+func _on_MRE_body_entered(_body):
 	if Global.player_health < 20:
 		Global.player_health += randi()%5+3
-		$SoundPickup.play()
+		emit_signal("healed")
 		queue_free()
 
-#Bounce Animation
-func _process(_delta):
-	$Sprite.play()
