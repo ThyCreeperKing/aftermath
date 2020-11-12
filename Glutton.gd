@@ -8,6 +8,7 @@ var velocity = Vector2(0,0)
 var health = 10
 var player = null
 var timer = null
+var attack_detection = null
 
 
 ###SIGNALS###
@@ -16,7 +17,7 @@ signal attack
 
 ###GLUTTON LOOP###
 func _physics_process(_delta):
-	#Player Chase & Attack Mechanics
+	#Glutton Chase Mechanics
 	velocity.x = 0
 	if player:
 		if player.position.x > position.x + 50:
@@ -24,16 +25,14 @@ func _physics_process(_delta):
 			$GluttonSprite.play("Walk")
 			$GluttonSprite.flip_h = false
 			
-			if player.position.x <= position.x + 51:
-				$GluttonSprite.play("Attack")
-			
 		elif player.position.x < position.x - 50:
 			velocity.x = -MOVE_SPEED
 			$GluttonSprite.play("Walk")
 			$GluttonSprite.flip_h = true
-			
-			if player.position.x >= position.x - 51:
-				$GluttonSprite.play("Attack")
+	
+	#Glutton Attack Mechanics
+	if attack_detection:
+		$GluttonSprite.play("Attack")
 	
 	#Idle
 	if velocity == Vector2(0,19.6) and player == null:
@@ -51,7 +50,6 @@ func _physics_process(_delta):
 		velocity = Vector2(0,0)
 		$GluttonSprite.stop()
 		$GluttonSprite.play("Death")
-		
 		queue_free()
 	
 	#Gravity and Movement
@@ -67,6 +65,15 @@ func _on_GluttonSprite_animation_finished():
 		emit_signal("attack")
 
 
+#Hit by Bullet
+func _on_HitArea_area_entered(area):
+	health -= randi()%4+3
+	area.queue_free()
+	$GluttonSprite.modulate = Color(1,0,0,1)
+	yield(get_tree().create_timer(0.1), "timeout")
+	$GluttonSprite.modulate = Color(1,1,1,1)
+
+
 #Player Detection
 func _on_Visibility_body_entered(body):
 	player = body
@@ -74,10 +81,8 @@ func _on_Visibility_body_exited(_body):
 	player = null
 
 
-#Hit by Bullet
-func _on_DamageArea_area_entered(area):
-	health -= randi()%4+3
-	area.queue_free()
-	$GluttonSprite.modulate = Color(1,0,0,1)
-	yield(get_tree().create_timer(0.1), "timeout")
-	$GluttonSprite.modulate = Color(1,1,1,1)
+#Attack Range Detection
+func _on_AttackRange_body_entered(body):
+	attack_detection = body
+func _on_AttackRange_body_exited(_body):
+	attack_detection = null

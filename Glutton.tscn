@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://glutton_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Glutton.gd" type="Script" id=2]
@@ -7,10 +7,15 @@
 extents = Vector2( 12.2193, 14.6557 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 35.629, 32.536 )
+extents = Vector2( 31.7181, 55.8261 )
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 515.101
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 325.252
+height = 845.957
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 34.7089
+height = 46.762
 
 [node name="Glutton" type="KinematicBody2D"]
 collision_layer = 8
@@ -24,7 +29,7 @@ __meta__ = {
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,13 +37,13 @@ visible = false
 position = Vector2( -1.84187, 37.1913 )
 shape = SubResource( 1 )
 
-[node name="DamageArea" type="Area2D" parent="."]
+[node name="HitArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 16
 collision_mask = 65
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-position = Vector2( -0.355146, -11.9184 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2( -1.24605, -5.68212 )
 shape = SubResource( 2 )
 
 [node name="Visibility" type="Area2D" parent="."]
@@ -46,8 +51,19 @@ visible = false
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
+rotation = 1.5708
 shape = SubResource( 3 )
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2( -0.8909, -15.1453 )
+rotation = 1.5708
+shape = SubResource( 4 )
 [connection signal="animation_finished" from="GluttonSprite" to="." method="_on_GluttonSprite_animation_finished"]
-[connection signal="area_entered" from="DamageArea" to="." method="_on_DamageArea_area_entered"]
+[connection signal="area_entered" from="HitArea" to="." method="_on_HitArea_area_entered"]
 [connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
 [connection signal="body_exited" from="Visibility" to="." method="_on_Visibility_body_exited"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_AttackRange_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_AttackRange_body_exited"]
