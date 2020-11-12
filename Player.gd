@@ -11,10 +11,11 @@ var bullet = preload("res://Bullet.tscn")
 
 #Signal Collection
 func _ready():
-	for x in Global.ammo_pickup_instances:
-		x.connect("reload", self, "_on_Ammo_reload")
-	for x in Global.mre_pickup_instances:
-		x.connect("healed", self, "_on_MRE_healed")
+	for num in Global.ammo_pickup_instances:
+		num.connect("reload", self, "_on_Ammo_reload")
+	for num2 in Global.mre_pickup_instances:
+		num2.connect("healed", self, "_on_MRE_healed")
+
 
 ###PLAYER LOOP###
 func _physics_process(_delta):
@@ -70,7 +71,7 @@ func _physics_process(_delta):
 			bullet_shoot.position.y = position.y - 15
 			bullet_shoot.direction = 1
 			
-		yield(get_tree().create_timer(0.3), "timeout")
+		yield(get_tree().create_timer(0.8), "timeout")
 	#Gravity and Movement
 	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity,Vector2.UP)
@@ -104,7 +105,7 @@ func _on_PlayerSprite_animation_finished():
 #Glutton Attack
 func _on_Glutton_attack():
 	$PlayerSprite.modulate = Color(1,0,0,1)
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.15), "timeout")
 	$PlayerSprite.modulate = Color(1,1,1,1)
 	
 	Global.player_health -= randi()%4+3
@@ -114,14 +115,14 @@ func _on_Glutton_attack():
 func _on_Ammo_reload():
 	$SoundReload.play(0.1)
 	$PlayerSprite.modulate = Color(10,10,10,10)
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.15), "timeout")
 	$PlayerSprite.modulate = Color(1,1,1,1)
 
 
 #MRE Pickup Noise & Flash
 func _on_MRE_healed():
-	$SoundPickup.play()
+	$SoundHeal.play()
 	$PlayerSprite.modulate = Color(0,1,0,1)
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.15), "timeout")
 	$PlayerSprite.modulate = Color(1,1,1,1)
 

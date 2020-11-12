@@ -43,35 +43,68 @@ func _physics_process(_delta):
 		velocity.y = JUMP_SPEED
 		$GluttonSprite.play("Jump")
 	
-	
+	#The Dead Don't Move
 	#Death
-	elif health <= 0:
-		health = 0
-		velocity = Vector2(0,0)
-		$GluttonSprite.stop()
+	if health <= 0:
+		velocity.x = 0
+		#Death Noises
+		var deathsound = randi()%2+1
+		if deathsound == 1:
+			$SoundDeath.play()
+		elif deathsound == 2:
+			$SoundDeath2.play()
+		
 		$GluttonSprite.play("Death")
-		queue_free()
+		$GluttonSprite.modulate = Color(1,0,0,1)
+		yield(get_tree().create_timer(0.15), "timeout")
+		$GluttonSprite.modulate = Color(1,1,1,1)
+	
 	
 	#Gravity and Movement
 	velocity = move_and_slide(velocity,Vector2.UP)
 	velocity.y += GRAVITY
+	
+	#Anger Sound
+	if velocity.x > 0:
+		var angersound = randi()%3+1
+		if angersound == 1:
+			$SoundAnger.play()
+		elif angersound == 2:
+			$SoundAnger2.play()
+		elif angersound == 3:
+			$SoundAnger3.play()
+		yield(get_tree().create_timer(5), "timeout")
+	
+
+#Hit by Bullet
+func _on_HitArea_area_entered(area):
+	
+	#LIFE OR DEATH!
+	if health > 0:
+		#Hurt Sound
+		var hurtsound = randi()%3+1
+		if hurtsound == 1:
+			$SoundHurt.play()
+		elif hurtsound == 2:
+			$SoundHurt2.play()
+		elif hurtsound == 3:
+			$SoundHurt3.play()
+		
+		health -= randi()%4+3
+		area.queue_free()
+		$GluttonSprite.modulate = Color(1,0,0,1)
+		yield(get_tree().create_timer(0.15), "timeout")
+		$GluttonSprite.modulate = Color(1,1,1,1)
 
 
 #When Animation Finished
 func _on_GluttonSprite_animation_finished():
 	if $GluttonSprite.animation == "Jump":
 		$GluttonSprite.stop("Jump")
-	elif $GluttonSprite.animation == "Attack":
+	if $GluttonSprite.animation == "Attack":
 		emit_signal("attack")
-
-
-#Hit by Bullet
-func _on_HitArea_area_entered(area):
-	health -= randi()%4+3
-	area.queue_free()
-	$GluttonSprite.modulate = Color(1,0,0,1)
-	yield(get_tree().create_timer(0.1), "timeout")
-	$GluttonSprite.modulate = Color(1,1,1,1)
+	if $GluttonSprite.animation == "Death":
+		queue_free()
 
 
 #Player Detection

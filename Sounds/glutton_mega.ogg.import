@@ -11,5 +11,5 @@ dest_files=[ "res://.import/glutton_mega.ogg-27fe1fa51995dba6c09ff2471a48ce02.og
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

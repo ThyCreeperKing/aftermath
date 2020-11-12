@@ -1,7 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://glutton_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Glutton.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/glutton_idle.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/glutton_hurt.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/glutton_death.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/glutton_hurt_3.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/glutton_death_2.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/glutton_idle_2.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/glutton_angered_2.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/glutton_hurt_2.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/glutton_angered.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/glutton_angered_3.ogg" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12.2193, 14.6557 )
@@ -29,8 +39,6 @@ __meta__ = {
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 2
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -55,12 +63,43 @@ rotation = 1.5708
 shape = SubResource( 3 )
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2( -0.8909, -15.1453 )
 rotation = 1.5708
 shape = SubResource( 4 )
+
+[node name="SoundIdle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="SoundIdle2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="SoundAnger" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="SoundAnger2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="SoundAnger3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="SoundHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="SoundHurt2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="SoundHurt3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="SoundDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="SoundDeath2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 [connection signal="animation_finished" from="GluttonSprite" to="." method="_on_GluttonSprite_animation_finished"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_HitArea_area_entered"]
 [connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]

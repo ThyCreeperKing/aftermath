@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/glutton_angered.ogg-761666cc2d60a7d50eca83bf829b2601.oggstr"
+
+[deps]
+
+source_file="res://Sounds/glutton_angered.ogg"
+dest_files=[ "res://.import/glutton_angered.ogg-761666cc2d60a7d50eca83bf829b2601.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

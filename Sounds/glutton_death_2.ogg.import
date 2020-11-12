@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/glutton_death_2.ogg-d90ced97cab4c30b04041258bdd3e093.oggstr"
+
+[deps]
+
+source_file="res://Sounds/glutton_death_2.ogg"
+dest_files=[ "res://.import/glutton_death_2.ogg-d90ced97cab4c30b04041258bdd3e093.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

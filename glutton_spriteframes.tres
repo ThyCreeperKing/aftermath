@@ -19,14 +19,9 @@
 
 [resource]
 animations = [ {
-"frames": [ ExtResource( 6 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "Attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 13 ), ExtResource( 12 ) ],
-"loop": false,
-"name": "Death",
+"name": "Idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 15 ), ExtResource( 14 ) ],
@@ -34,9 +29,14 @@ animations = [ {
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 13 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "Idle",
+"name": "Death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ],
