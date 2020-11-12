@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Glutton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MRE.tscn" type="PackedScene" id=2]
@@ -24,6 +24,10 @@
 [ext_resource path="res://Pickup Generation.gd" type="Script" id=22]
 [ext_resource path="res://Tileset/pickup_spot.png" type="Texture" id=23]
 [ext_resource path="res://Sounds/city_ambient.wav" type="AudioStream" id=24]
+[ext_resource path="res://Sounds/glutton_death.ogg" type="AudioStream" id=25]
+[ext_resource path="res://Sounds/glutton_death_2.ogg" type="AudioStream" id=26]
+[ext_resource path="res://SoundDeath.gd" type="Script" id=27]
+[ext_resource path="res://SoundDeath2.gd" type="Script" id=28]
 
 [sub_resource type="TileSet" id=1]
 0/name = "pickup_spot.png 0"
@@ -576,16 +580,33 @@ autoplay = true
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Glutton" parent="Enemies" instance=ExtResource( 1 )]
-position = Vector2( -1472, 384 )
+position = Vector2( -1472, 392 )
 
 [node name="Glutton2" parent="Enemies" instance=ExtResource( 1 )]
-position = Vector2( 4480, 944 )
+position = Vector2( 3488, 168 )
 
 [node name="Glutton3" parent="Enemies" instance=ExtResource( 1 )]
-position = Vector2( 7832, 400 )
+position = Vector2( 7104, 456 )
 
 [node name="Glutton4" parent="Enemies" instance=ExtResource( 1 )]
-position = Vector2( 14328, 336 )
+position = Vector2( 8720, 392 )
+
+[node name="Glutton5" parent="Enemies" instance=ExtResource( 1 )]
+position = Vector2( 11280, 200 )
+
+[node name="Glutton6" parent="Enemies" instance=ExtResource( 1 )]
+position = Vector2( 11760, 136 )
+
+[node name="Glutton7" parent="Enemies" instance=ExtResource( 1 )]
+position = Vector2( 15480, 264 )
+
+[node name="SoundDeath3" type="AudioStreamPlayer" parent="Enemies"]
+stream = ExtResource( 25 )
+script = ExtResource( 27 )
+
+[node name="SoundDeath4" type="AudioStreamPlayer" parent="Enemies"]
+stream = ExtResource( 26 )
+script = ExtResource( 28 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1264, 144 )
@@ -631,6 +652,23 @@ transform = Transform2D( 1, 0, 0, 1, 0, 480 )
 offset = Vector2( 855, 480 )
 transform = Transform2D( 1, 0, 0, 1, 855, 480 )
 [connection signal="attack" from="Enemies/Glutton" to="Player" method="_on_Glutton_attack"]
+[connection signal="dead" from="Enemies/Glutton" to="Enemies/SoundDeath3" method="_on_Glutton_dead"]
+[connection signal="dead" from="Enemies/Glutton" to="Enemies/SoundDeath4" method="_on_Glutton_dead"]
 [connection signal="attack" from="Enemies/Glutton2" to="Player" method="_on_Glutton_attack"]
+[connection signal="dead" from="Enemies/Glutton2" to="Enemies/SoundDeath3" method="_on_Glutton_dead"]
+[connection signal="dead" from="Enemies/Glutton2" to="Enemies/SoundDeath4" method="_on_Glutton_dead"]
 [connection signal="attack" from="Enemies/Glutton3" to="Player" method="_on_Glutton_attack"]
+[connection signal="dead" from="Enemies/Glutton3" to="Enemies/SoundDeath3" method="_on_Glutton_dead"]
+[connection signal="dead" from="Enemies/Glutton3" to="Enemies/SoundDeath4" method="_on_Glutton_dead"]
 [connection signal="attack" from="Enemies/Glutton4" to="Player" method="_on_Glutton_attack"]
+[connection signal="dead" from="Enemies/Glutton4" to="Enemies/SoundDeath3" method="_on_Glutton_dead"]
+[connection signal="dead" from="Enemies/Glutton4" to="Enemies/SoundDeath4" method="_on_Glutton_dead"]
+[connection signal="attack" from="Enemies/Glutton5" to="Player" method="_on_Glutton_attack"]
+[connection signal="dead" from="Enemies/Glutton5" to="Enemies/SoundDeath3" method="_on_Glutton_dead"]
+[connection signal="dead" from="Enemies/Glutton5" to="Enemies/SoundDeath4" method="_on_Glutton_dead"]
+[connection signal="attack" from="Enemies/Glutton6" to="Player" method="_on_Glutton_attack"]
+[connection signal="dead" from="Enemies/Glutton6" to="Enemies/SoundDeath3" method="_on_Glutton_dead"]
+[connection signal="dead" from="Enemies/Glutton6" to="Enemies/SoundDeath4" method="_on_Glutton_dead"]
+[connection signal="attack" from="Enemies/Glutton7" to="Player" method="_on_Glutton_attack"]
+[connection signal="dead" from="Enemies/Glutton7" to="Enemies/SoundDeath3" method="_on_Glutton_dead"]
+[connection signal="dead" from="Enemies/Glutton7" to="Enemies/SoundDeath4" method="_on_Glutton_dead"]

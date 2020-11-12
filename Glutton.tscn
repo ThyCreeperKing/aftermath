@@ -100,6 +100,7 @@ stream = ExtResource( 5 )
 
 [node name="SoundDeath2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+[connection signal="dead" from="." to="." method="_on_Glutton_dead"]
 [connection signal="animation_finished" from="GluttonSprite" to="." method="_on_GluttonSprite_animation_finished"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_HitArea_area_entered"]
 [connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
