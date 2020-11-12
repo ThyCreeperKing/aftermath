@@ -5,11 +5,14 @@ const MOVE_SPEED = 75
 const GRAVITY = 19.6
 const JUMP_SPEED = -275
 var velocity = Vector2(0,0)
+var health = 10
 var player = null
+var timer = null
 
 
 ###SIGNALS###
 signal attack
+
 
 ###GLUTTON LOOP###
 func _physics_process(_delta):
@@ -23,7 +26,6 @@ func _physics_process(_delta):
 			
 			if player.position.x <= position.x + 51:
 				$GluttonSprite.play("Attack")
-				print("attack right")
 			
 		elif player.position.x < position.x - 50:
 			velocity.x = -MOVE_SPEED
@@ -32,7 +34,6 @@ func _physics_process(_delta):
 			
 			if player.position.x >= position.x - 51:
 				$GluttonSprite.play("Attack")
-				print("attack left")
 	
 	#Idle
 	if velocity == Vector2(0,19.6) and player == null:
@@ -43,17 +44,27 @@ func _physics_process(_delta):
 		velocity.y = JUMP_SPEED
 		$GluttonSprite.play("Jump")
 	
-	#Max Health
-	if Global.glutton_health > 20:
-		Global.glutton_health = 20
+	
 	#Death
-	elif Global.glutton_health <= 0:
+	elif health <= 0:
+		health = 0
 		velocity = Vector2(0,0)
+		$GluttonSprite.stop()
 		$GluttonSprite.play("Death")
 		
+		queue_free()
+	
 	#Gravity and Movement
 	velocity = move_and_slide(velocity,Vector2.UP)
 	velocity.y += GRAVITY
+
+
+#When Animation Finished
+func _on_GluttonSprite_animation_finished():
+	if $GluttonSprite.animation == "Jump":
+		$GluttonSprite.stop("Jump")
+	elif $GluttonSprite.animation == "Attack":
+		emit_signal("attack")
 
 
 #Player Detection
@@ -63,26 +74,10 @@ func _on_Visibility_body_exited(_body):
 	player = null
 
 
-#Checking for Finished Animations
-func _on_GluttonSprite_animation_finished():
-	#Jump Once
-	if $GluttonSprite.animation == "Jump":
-		$GluttonSprite.stop()
-	#Attack Signal
-	if $GluttonSprite.animation == "Attack":
-		emit_signal("attack")
-	#Death
-	if $GluttonSprite.animation == "Death":
-		queue_free()
-
-
 #Hit by Bullet
 func _on_DamageArea_area_entered(area):
-	Global.glutton_health -= randi()%4+3
+	health -= randi()%4+3
 	area.queue_free()
-	
 	$GluttonSprite.modulate = Color(1,0,0,1)
 	yield(get_tree().create_timer(0.1), "timeout")
 	$GluttonSprite.modulate = Color(1,1,1,1)
-	
-
