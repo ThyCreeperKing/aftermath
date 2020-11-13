@@ -9,6 +9,12 @@ var velocity = Vector2(0,0)
 var bullet = preload("res://Bullet.tscn")
 
 
+###SIGNALS###
+signal healthgain
+signal healthloss
+signal ammogain
+
+
 #Signal Collection
 func _ready():
 	for num in Global.ammo_pickup_instances:
@@ -112,13 +118,14 @@ func _on_Glutton_attack():
 	$PlayerSprite.modulate = Color(1,0,0,1)
 	yield(get_tree().create_timer(0.15), "timeout")
 	$PlayerSprite.modulate = Color(1,1,1,1)
-	
+	emit_signal("healthloss")
 	Global.player_health -= randi()%4+3
 
 
 #Ammo Pickup Noise & Flash
 func _on_Ammo_reload():
 	$SoundReload.play(0.1)
+	emit_signal("ammogain")
 	$PlayerSprite.modulate = Color(10,10,10,10)
 	yield(get_tree().create_timer(0.15), "timeout")
 	$PlayerSprite.modulate = Color(1,1,1,1)
@@ -127,6 +134,7 @@ func _on_Ammo_reload():
 #MRE Pickup Noise & Flash
 func _on_MRE_healed():
 	$SoundHeal.play()
+	emit_signal("healthgain")
 	$PlayerSprite.modulate = Color(0,1,0,1)
 	yield(get_tree().create_timer(0.15), "timeout")
 	$PlayerSprite.modulate = Color(1,1,1,1)
