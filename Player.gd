@@ -81,7 +81,12 @@ func _physics_process(_delta):
 	
 	#Death
 	if Global.player_health <= 0:
+		Global.ammo_pickup_instances = []
+		Global.mre_pickup_instances = []
+		Global.player_ammo = 0
+		Global.player_health = 20
 		get_tree().change_scene("res://Menu.tscn")
+	
 	
 	#Health Range
 	if Global.player_health > 20:
