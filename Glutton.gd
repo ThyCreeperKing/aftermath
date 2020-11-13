@@ -21,7 +21,7 @@ signal dead
 func _physics_process(_delta):
 	#Glutton Chase Mechanics
 	velocity.x = 0
-	if player and not dieonce == true:
+	if player and dieonce == false:
 		if player.position.x > position.x + 50:
 			velocity.x = MOVE_SPEED
 			$GluttonSprite.play("Walk")
@@ -84,22 +84,23 @@ func _on_HitArea_area_entered(area):
 func _on_GluttonSprite_animation_finished():
 	if $GluttonSprite.animation == "Jump":
 		$GluttonSprite.stop("Jump")
-	if $GluttonSprite.animation == "Attack":
+	if $GluttonSprite.animation == "Attack" and dieonce == false:
 		emit_signal("attack")
 
 
 #Player Detection
 func _on_Visibility_body_entered(body):
-	player = body
+	if dieonce == false:
+		player = body
 	
-	#Anger Sound
-	var angersound = randi()%3+1
-	if angersound == 1:
-		$SoundAnger.play()
-	elif angersound == 2:
-		$SoundAnger2.play()
-	elif angersound == 3:
-		$SoundAnger3.play()
+		#Anger Sound
+		var angersound = randi()%3+1
+		if angersound == 1:
+			$SoundAnger.play()
+		elif angersound == 2:
+			$SoundAnger2.play()
+		elif angersound == 3:
+			$SoundAnger3.play()
 
 func _on_Visibility_body_exited(_body):
 	player = null
