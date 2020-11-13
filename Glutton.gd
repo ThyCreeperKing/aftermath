@@ -118,3 +118,9 @@ func _on_Glutton_dead():
 	$GluttonSprite.play("Death")
 	yield($GluttonSprite, "animation_finished")
 	queue_free()
+
+
+#Player Colliding Takes Damage
+func _on_EnemyCollisionDamage_body_entered(body):
+	yield(get_tree().create_timer(2), "timeout")
+	emit_signal("attack")

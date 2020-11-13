@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://glutton_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Glutton.gd" type="Script" id=2]
@@ -27,6 +27,10 @@ height = 845.957
 radius = 34.7089
 height = 46.762
 
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 14.7613
+height = 74.4234
+
 [node name="Glutton" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 67
@@ -41,7 +45,6 @@ frames = ExtResource( 1 )
 animation = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -1.84187, 37.1913 )
 shape = SubResource( 1 )
 
@@ -70,6 +73,13 @@ collision_layer = 128
 position = Vector2( -0.8909, -15.1453 )
 rotation = 1.5708
 shape = SubResource( 4 )
+
+[node name="EnemyCollisionDamage" type="Area2D" parent="."]
+visible = false
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCollisionDamage"]
+shape = SubResource( 5 )
 
 [node name="SoundIdle" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -107,3 +117,4 @@ stream = ExtResource( 7 )
 [connection signal="body_exited" from="Visibility" to="." method="_on_Visibility_body_exited"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_AttackRange_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_AttackRange_body_exited"]
+[connection signal="body_entered" from="EnemyCollisionDamage" to="." method="_on_EnemyCollisionDamage_body_entered"]

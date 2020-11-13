@@ -67,6 +67,7 @@ shoot={
 2d_physics/layer_5="DamageArea"
 2d_physics/layer_6="EnemyVisibility"
 2d_physics/layer_7="Bullet"
+2d_physics/layer_9="EnemyMelee"
 
 [locale]
 
