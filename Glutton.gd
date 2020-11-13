@@ -108,7 +108,8 @@ func _on_Visibility_body_exited(_body):
 
 #Attack Range Detection
 func _on_AttackRange_body_entered(body):
-	attack_detection = body
+	if dieonce == false:
+		attack_detection = body
 func _on_AttackRange_body_exited(_body):
 	attack_detection = null
 
